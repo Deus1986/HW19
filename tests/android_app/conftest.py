@@ -5,7 +5,6 @@ from appium.options.android import UiAutomator2Options
 from appium.options.ios import XCUITestOptions
 from dotenv import load_dotenv
 from selene import browser
-from selenium.webdriver.chrome.options import Options
 
 DEFAULT_PLATFORM = "android"
 
@@ -17,9 +16,11 @@ def pytest_addoption(parser):
         default="android"
     )
 
+
 @pytest.fixture(scope='session', autouse=True)
 def load_env():
     load_dotenv()
+
 
 @pytest.fixture(scope='function', autouse=True)
 def mobile_management(request):
@@ -82,4 +83,3 @@ def mobile_management(request):
         yield "ios"
 
     browser.quit()
-
