@@ -5,6 +5,7 @@ from appium.options.android import UiAutomator2Options
 from appium.options.ios import XCUITestOptions
 from dotenv import load_dotenv
 from selene import browser
+from selenium.webdriver.chrome.options import Options
 
 DEFAULT_PLATFORM = "android"
 
@@ -23,6 +24,7 @@ def load_env():
 def mobile_management(request):
     browser_platform = request.config.getoption('--platform')
     browser_platform = browser_platform if browser_platform != "" else DEFAULT_PLATFORM
+    options = Options()
     if browser_platform == "android":
         options = UiAutomator2Options().load_capabilities({
             "platformName": "android",
