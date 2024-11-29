@@ -4,7 +4,7 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, have
 
 
-def test_search(mobile_management):
+def test_search():
     # if mobile_management == "ios":
     #     pytest.skip("This test for android")
 

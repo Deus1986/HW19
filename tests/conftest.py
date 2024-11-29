@@ -23,7 +23,7 @@ def load_env():
     load_dotenv()
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='function', autouse=True)
 def mobile_management(request):
     # browser_platform = request.config.getoption('--platform')
     # browser_platform = browser_platform if browser_platform != "" else DEFAULT_PLATFORM
@@ -49,6 +49,8 @@ def mobile_management(request):
     })
     browser.config.driver_remote_url = 'http://hub.browserstack.com/wd/hub'
     browser.config.driver_options = options
+    b = browser.driver.session_id
+    print(b)
     #
     # browser.config.timeout = float(os.getenv('timeout', '10.0'))
     #
@@ -91,4 +93,5 @@ def mobile_management(request):
     yield
 
     browser.quit()
-    time.sleep(50)
+    a = browser.driver.session_id
+    print(a)
