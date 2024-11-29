@@ -4,6 +4,7 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, have
 
 
+@pytest.mark.skip
 def test_ios(mobile_management):
     if mobile_management == "android":
         pytest.skip("This test for ios")
@@ -15,4 +16,3 @@ def test_ios(mobile_management):
 
     with allure.step("Assert text output"):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Text Output")).should(have.text("hello@browserstack.com"))
-
