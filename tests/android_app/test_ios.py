@@ -2,11 +2,12 @@ import allure
 import pytest
 from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, have
+from project import config
 
 
-@pytest.mark.skip
-def test_ios(mobile_management):
-    if mobile_management == "android":
+# @pytest.mark.skip
+def test_ios():
+    if config.browser_platform == "android":
         pytest.skip("This test for ios")
     with allure.step("Click text button"):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Text Button")).click()

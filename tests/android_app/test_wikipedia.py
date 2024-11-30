@@ -2,11 +2,12 @@ import pytest
 from allure_commons._allure import step
 from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, have
+from project import config
 
 
 def test_search():
-    # if mobile_management == "ios":
-    #     pytest.skip("This test for android")
+    if config.browser_platform == "ios":
+        pytest.skip("This test for android")
 
     with step('Type search'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
