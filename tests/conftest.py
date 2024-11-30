@@ -1,8 +1,9 @@
+import allure_commons
 import pytest
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.options.ios import XCUITestOptions
-from selene import browser
+from selene import browser, support
 from project import config
 
 
@@ -55,6 +56,7 @@ def mobile_management():
         browser.config.driver = webdriver.Remote(config.remote_url, options=options)
 
     browser.config.timeout = config.timeout
+    browser.config._wait_decorator = support._logging.wait_with(context=allure_commons._allure.StepContext)
 
     yield
 
