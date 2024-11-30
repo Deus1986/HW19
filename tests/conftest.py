@@ -1,20 +1,9 @@
-import os
-import time
-
-import pydantic
 import pytest
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.options.ios import XCUITestOptions
-from dotenv import load_dotenv
 from selene import browser
-
 from project import config
-
-
-@pytest.fixture(scope='session', autouse=True)
-def load_env():
-    load_dotenv()
 
 
 @pytest.fixture(scope='function', autouse=True)
@@ -34,10 +23,9 @@ def mobile_management():
                 "projectName": "First Python project",
                 "buildName": "browserstack-build-1",
                 "sessionName": "BStack first_test",
-
                 # Set your access credentials
-                "userName": "bsuser_SzPCp5",
-                "accessKey": "zUGJksMDo9pQrR7LF4zz"
+                "userName": config.user_name,
+                "accessKey": config.access_key
             }
         })
 
@@ -60,8 +48,8 @@ def mobile_management():
                 "sessionName": "BStack first_test_ios",
 
                 # Set your access credentials
-                "userName": "bsuser_SzPCp5",
-                "accessKey": "zUGJksMDo9pQrR7LF4zz"
+                "userName": config.user_name,
+                "accessKey": config.access_key
             }
         })
         browser.config.driver = webdriver.Remote(config.remote_url, options=options)
